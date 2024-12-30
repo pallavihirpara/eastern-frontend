@@ -7,9 +7,9 @@ import { apiGetUsers, apiDeleteUsers, apiDeleteMultipleUsers } from './../../API
 const loading = ref<boolean>(true);
 const search = ref('');  
 const activeButton = ref<string>('listing');
-const currentPage = ref<number>(1);  // Track current page
-const totalData = ref<number>(0);  // Track total number of items
-const perPage = ref<number>(10);  // Set number of items per page
+const currentPage = ref<number>(1);
+const totalData = ref<number>(0); 
+const perPage = ref<number>(10);
 import { useRouter } from 'vue-router';
 const handlesearch = ref<string>('');
   const handleFilter = ref<string>('');
@@ -39,10 +39,10 @@ const getUserData = async () => {
       filter: handleFilter.value,
       sort: '',
       order_by: 'asc',
-      perPage: perPage.value, // Pass perPage to the API
+      perPage: perPage.value,
     });
     users.value = res.data;
-    totalData.value = res.total;  // Set total data count
+    totalData.value = res.total; 
   } finally {
     loading.value = false;
   }
@@ -175,7 +175,6 @@ onMounted(() => {
   getUserData();
 });
 
-// Handle page change
 const handlePageChange = (newPage: number) => {
   currentPage.value = newPage;
   getUserData();
